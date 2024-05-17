@@ -18,7 +18,7 @@ $result = $conn->query($sql);
 // Виведення даних, якщо є результат
 if ($result->num_rows > 0) {
     echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Назва відділу</th><th>Посилання на склад</th></tr>";
+    echo "<tr><th>ID</th><th>Назва Відділу</th><th>Склад відділу</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["id_dep"] . "</td>";

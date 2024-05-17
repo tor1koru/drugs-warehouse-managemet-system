@@ -12,14 +12,11 @@
 include_once "../database/db_connection.php";
 
 // Функція для оновлення даних в таблиці Department_storage
-// Функція для оновлення даних в таблиці Department_storage
 function updateDepartmentStorage($conn) {
-    // Очищаємо Department_storage перед оновленням
     if (!$conn->query("TRUNCATE TABLE Department_storage")) {
         die("Помилка очищення таблиці: " . $conn->error);
     }
 
-    // SQL-запит для оновлення даних в Department_storage
     $sql = "
         SELECT 
             m.id_med,
@@ -39,7 +36,7 @@ function updateDepartmentStorage($conn) {
         UNION ALL
         SELECT 
             m.id_med,
-            st.id_dep,
+            st.id_dep AS id_department,
             m.name_med,
             m.med_form,
             m.dosage,
@@ -59,13 +56,15 @@ function updateDepartmentStorage($conn) {
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
-        $medicines = array(); // Асоціативний масив для збереження даних про медикаменти
+        $medicines = array();
 
-        // Заповнюємо асоціативний масив
         while ($row = $result->fetch_assoc()) {
+            $id_department = $row['id_department'];
             $id_med = $row['id_med'];
-            if (!isset($medicines[$id_med])) {
-                $medicines[$id_med] = array(
+            $key = $id_department . '-' . $id_med;
+
+            if (!isset($medicines[$key])) {
+                $medicines[$key] = array(
                     'id_department' => $row['id_department'],
                     'name_med' => $row['name_med'],
                     'med_form' => $row['med_form'],
@@ -76,13 +75,12 @@ function updateDepartmentStorage($conn) {
                 );
             }
 
-            $medicines[$id_med]['count_dep'] += $row['count_dep'];
-            if ($row['date_dep'] > $medicines[$id_med]['date_dep']) {
-                $medicines[$id_med]['date_dep'] = $row['date_dep'];
+            $medicines[$key]['count_dep'] += $row['count_dep'];
+            if ($row['date_dep'] > $medicines[$key]['date_dep']) {
+                $medicines[$key]['date_dep'] = $row['date_dep'];
             }
         }
 
-        // Вставляємо дані в Department_storage
         foreach ($medicines as $medicine) {
             $id_department = $medicine['id_department'];
             $name_med = $medicine['name_med'];
@@ -103,53 +101,34 @@ function updateDepartmentStorage($conn) {
     }
 }
 
-
-
-
 // Виклик функції оновлення Department_storage
 updateDepartmentStorage($conn);
 
-// SQL запит для вибору всіх даних з таблиці Department_storage
-
+// Отримуємо ID відділу з GET параметра
 $id_dep = isset($_GET['id_dep']) ? intval($_GET['id_dep']) : 0;
 
-if ($id_dep > 0) {
-    // SQL запит для вибору даних з Department_storage для конкретного відділу
-    $sql = "
-        SELECT 
-            name_med, 
-            med_form, 
-            dosage, 
-            producer, 
-            count_dep, 
-            date_dep 
-        FROM 
-            Department_storage 
-        WHERE 
-            id_department = $id_dep
-    ";
-    $result = $conn->query($sql);
+// SQL запит для вибору даних з таблиці Department_storage для конкретного відділу
+$sql = "SELECT * FROM Department_storage WHERE id_department = $id_dep";
+$result = $conn->query($sql);
 
-    // Виведення даних, якщо є результат
-    if ($result->num_rows > 0) {
-        echo "<table border='1'>";
-        echo "<tr><th>Назва медикаменту</th><th>Форма</th><th>Дозування</th><th>Виробник</th><th>Кількість на складі</th><th>Дата оновлення</th></tr>";
-        while ($row = $result->fetch_assoc()) {
-            echo "<tr>";
-            echo "<td>" . $row["name_med"] . "</td>";
-            echo "<td>" . $row["med_form"] . "</td>";
-            echo "<td>" . $row["dosage"] . "</td>";
-            echo "<td>" . $row["producer"] . "</td>";
-            echo "<td>" . $row["count_dep"] . "</td>";
-            echo "<td>" . $row["date_dep"] . "</td>";
-            echo "</tr>";
-        }
-        echo "</table>";
-    } else {
-        echo "Немає даних для цього відділу";
+// Виведення даних, якщо є результат
+if ($result->num_rows > 0) {
+    echo "<table border='1'>";
+    echo "<tr><th>ID відділу</th><th>Назва медикаменту</th><th>Форма</th><th>Дозування</th><th>Виробник</th><th>Кількість на складі</th><th>Дата оновлення</th></tr>";
+    while ($row = $result->fetch_assoc()) {
+        echo "<tr>";
+        echo "<td>" . $row["id_department"] . "</td>";
+        echo "<td>" . $row["name_med"] . "</td>";
+        echo "<td>" . $row["med_form"] . "</td>";
+        echo "<td>" . $row["dosage"] . "</td>";
+        echo "<td>" . $row["producer"] . "</td>";
+        echo "<td>" . $row["count_dep"] . "</td>";
+        echo "<td>" . $row["date_dep"] . "</td>";
+        echo "</tr>";
     }
+    echo "</table>";
 } else {
-    echo "Некоректний ID відділу";
+    echo "Немає даних для вибраного відділу";
 }
 
 // Закриття з'єднання з базою даних
