@@ -1,6 +1,13 @@
 <?php require_once "../includes/header.php" ?>
 <h1>Склад відділу</h1>
-
+    <form method="GET" action="">
+        <label for="search_med">Пошук за назвою медикаменту:</label>
+        <input type="text" id="search_med" name="search_med">
+        <button type="submit">Пошук</button>
+        <?php if (isset($_GET['id_dep'])): ?>
+            <input type="hidden" name="id_dep" value="<?= htmlspecialchars($_GET['id_dep']) ?>">
+        <?php endif; ?>
+    </form>
 <?php
 include_once "../database/db_connection.php";
 require_once "../includes/depart_storage.php";
@@ -100,10 +107,15 @@ require_once "../includes/depart_storage.php";
 // Отримуємо ID відділу з GET параметра
 $id_dep = isset($_GET['id_dep']) ? intval($_GET['id_dep']) : 0;
 
-// SQL запит для вибору даних з таблиці Department_storage для конкретного відділу
-$sql = "SELECT * FROM Department_storage WHERE id_department = $id_dep";
-$result = $conn->query($sql);
+// Отримуємо назву медикаменту з GET параметра
+$search_med = isset($_GET['search_med']) ? $conn->real_escape_string($_GET['search_med']) : '';
 
+// SQL запит для вибору даних з таблиці Department_storage з можливістю пошуку за назвою медикаменту
+$sql = "SELECT * FROM Department_storage WHERE id_department = $id_dep";
+if (!empty($search_med)) {
+    $sql .= " AND name_med LIKE '%$search_med%'";
+}
+$result = $conn->query($sql);
 // Виведення даних, якщо є результат
 if ($result->num_rows > 0) {
     echo "<table border='1'>";

@@ -33,7 +33,7 @@ if ($id_dep > 0) {
     // Виведення даних, якщо є результат
     if ($result->num_rows > 0) {
         echo "<table border='1'>";
-        echo "<tr><th>ID</th><th>Ім'я</th><th>Прізвище</th><th>По батькові</th><th>Вік</th><th>Адреса</th><th>Телефон</th><th>Посада</th></tr>";
+        echo "<tr><th>ID</th><th>Ім'я</th><th>Прізвище</th><th>По батькові</th><th>Вік</th><th>Адреса</th><th>Телефон</th><th>Посада</th><th>Дії</th></tr>";
         while ($row = $result->fetch_assoc()) {
             echo "<tr>";
             echo "<td>" . $row["id_person"] . "</td>";
@@ -44,6 +44,9 @@ if ($id_dep > 0) {
             echo "<td>" . $row["address"] . "</td>";
             echo "<td>" . $row["telephone"] . "</td>";
             echo "<td>" . $row["position"] . "</td>";
+            echo "<td>
+                    <a href='delete_person_staf.php?id_person=" . $row["id_person"] . "'>Видалити</a>
+                  </td>";
             echo "</tr>";
         }
         echo "</table>";

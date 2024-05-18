@@ -52,7 +52,9 @@ $conn->close();
         <input type="submit" value="Додати відділ">
     </form>
 </div>
+
 <a href="add_staff.php">Додати персонал до відділу </a><br><br>
+
 <script>
     // JavaScript для переключення видимості форми додавання відділу
     document.getElementById("toggleFormBtn").addEventListener("click", function() {
