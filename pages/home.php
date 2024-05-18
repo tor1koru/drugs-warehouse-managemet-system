@@ -120,6 +120,7 @@ if ($result->num_rows > 0) {
 // Закриття з'єднання з базою даних
 $conn->close();
 ?>
+<a href="output_to_client_form.php">Видати ліки </a><br><br>
 
 
 <?php require_once "../includes/footer.php" ?>

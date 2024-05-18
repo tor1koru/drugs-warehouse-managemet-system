@@ -3,44 +3,56 @@ require_once '../database/db_connection.php';
 session_start();
 
 
-$login =$_POST["login"];
-$password =$_POST["password"];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $login = $_POST['login'];
+    $password = $_POST['password'];
 
-$sql = "SELECT * FROM Staff WHERE login = '$login' AND password = '$password'";
-$result = $conn->query($sql);
-$row = $result->fetch_assoc();
+    // Підготовлений вираз для запиту
+    $sql = "SELECT id_dep, password FROM Staff WHERE login = ?";
+    $stmt = $conn->prepare($sql);
 
+    // Перевірка підготовки виразу
+    if ($stmt === false) {
+        die("Failed to prepare the statement: " . $conn->error);
+    }
 
-if($row['login'] == "admin" && $row['password'] == "admin"){
-    header("location:../pages/home.php");
-    exit();
-}
-else{
-    $sql = "SELECT * FROM Staff WHERE login = '$login' AND password = '$password'";
+    // Прив'язування параметра
+    $stmt->bind_param("s", $login);
 
-// Виконання запиту
-    $result = $conn->query($sql);
+    // Виконання запиту
+    $stmt->execute();
 
-// Перевірка результату запиту
-    if ($result) {
-        // Отримання рядка даних з результату запиту
+    // Отримання результату
+    $result = $stmt->get_result();
+
+    // Перевірка, чи знайдений користувач з таким логіном
+    if ($result->num_rows == 1) {
         $row = $result->fetch_assoc();
 
-        // Перевірка, чи знайдено id_dep для вказаного логіну
-        if ($row) {
-            // Отримання id_dep
-            $id_dep = $row['id_dep'];
-
-            // Перенаправлення на іншу сторінку з параметром id_dep
-            header("Location: ../pages/dep_storage.php?id_dep=$id_dep");
-            exit(); // Важливо викликати exit() після header() для припинення подальшого виконання скрипту
+        // Перевірка пароля
+            if ($password == $row['password']) {
+            // Збереження інформації про користувача в сесії
+            $_SESSION['login'] = $login;
+            $_SESSION['id_dep'] = $row['id_dep'];
+            if($_SESSION['login'] == "admin"){
+                header('Location: ../pages/home.php');
+                exit();
+            }else {
+                // Перенаправлення на іншу сторінку
+                header("Location: ../pages/dep_storage_user.php?id_dep=" . $row['id_dep']);
+                exit;
+            }
         } else {
-            // Якщо id_dep не знайдено для вказаного логіну
-            echo "No id_dep found for the specified login.";
+            echo "Invalid password.";
         }
     } else {
-        // Якщо виникла помилка під час виконання запиту
-        echo "Error: " . $conn->error;
+        echo "No user found with that login.";
     }
+
+    // Закриття виразу
+    $stmt->close();
 }
+
+// Закриття з'єднання
+$conn->close();
 ?>

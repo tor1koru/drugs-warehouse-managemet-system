@@ -8,5 +8,6 @@
         <li class="menu-list__item"><a href="../pages/pers.php" class="menu-list__link">Persons</a></li>
         <li class="menu-list__item"><a href="../pages/add_med_input.php" class="menu-list__link">Input to main storage</a></li>
         <li class="menu-list__item"><a href="../pages/transfer_to_department.php" class="menu-list__link">Output from main storage to department</a></li>
+        <li class="menu-list__item"><a href="../includes/logout.php" class="menu-list__link">Log out</a></li>
     </ul>
 </nav>

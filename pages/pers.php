@@ -26,7 +26,7 @@ $result = $conn->query($sql);
 // Виведення даних, якщо є результат
 if ($result->num_rows > 0) {
     echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Ім'я</th><th>Прізвище</th><th>По батькові</th><th>Вік</th><th>Адреса</th><th>Телефон</th></tr>";
+    echo "<tr><th>ID</th><th>Ім'я</th><th>Прізвище</th><th>По батькові</th><th>Вік</th><th>Адреса</th><th>Телефон</th><th>Дії</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["id_person"] . "</td>";
@@ -36,6 +36,9 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["age"] . "</td>";
         echo "<td>" . $row["address"] . "</td>";
         echo "<td>" . $row["telephone"] . "</td>";
+        echo "<td><a href='edit_person.php?id=" . $row["id_person"] . "'>Редагувати</a></td>";
+        echo "<td><a href='delete_person.php?id=" . $row["id_person"] . "' onclick=\"return confirm('Ви впевнені, що хочете видалити цю особу?')\">Видалити</a></td>";
+
         echo "</tr>";
     }
     echo "</table>";
