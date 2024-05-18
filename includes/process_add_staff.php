@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     if ($conn->query($insert_staff_sql) === TRUE) {
         // Повернення до списку відділів (med.php)
-        header("Location: dep.php");
+        header("Location: ../pages/dep.php");
     } else {
         echo "Помилка при додаванні персоналу: " . $conn->error;
     }
