@@ -78,10 +78,6 @@ $conn->close();
             <input type="hidden" id="id_person" name="id_person">
             <div id="autocomplete-person-list" class="autocomplete-suggestions"></div><br><br>
 
-<!--            Співробітник:-->
-<!--            <input type="text" id="staffInput" name="staffInput">-->
-<!--            <input type="hidden" id="id_staff_client" name="id_staff_client">-->
-<!--            <div id="autocomplete-staff-list" class="autocomplete-suggestions"></div><br><br>-->
 
             Кількість: <input type="number" name="count_to_person"><br><br>
             Дата: <input type="date" name="date_output_to_client"><br><br>
@@ -163,37 +159,6 @@ $conn->close();
             }
         });
 
-        // document.getElementById('staffInput').addEventListener('input', function() {
-        //     const query = this.value;
-        //
-        //     if (query.length >= 2) {
-        //         const xhr = new XMLHttpRequest();
-        //         xhr.open('GET', 'get_staff.php?query=' + query, true);
-        //         xhr.onload = function() {
-        //             if (this.status === 200) {
-        //                 const staff = JSON.parse(this.responseText);
-        //                 const autocompleteList = document.getElementById('autocomplete-staff-list');
-        //                 autocompleteList.innerHTML = '';
-        //
-        //                 staff.forEach(person => {
-        //                     const item = document.createElement('div');
-        //                     item.classList.add('autocomplete-suggestion');
-        //                     item.textContent = `${person.full_name} ${person.position} ${person.name_dep}`;
-        //                     item.dataset.id = person.id_staff;
-        //                     item.addEventListener('click', function() {
-        //                         document.getElementById('staffInput').value = this.textContent;
-        //                         document.getElementById('id_staff_client').value = this.dataset.id;
-        //                         autocompleteList.innerHTML = '';
-        //                     });
-        //                     autocompleteList.appendChild(item);
-        //                 });
-        //             }
-        //         }
-        //         xhr.send();
-        //     } else {
-        //         document.getElementById('autocomplete-staff-list').innerHTML = '';
-        //     }
-        // });
     </script>
     <script>
         function toggleForm(formId) {

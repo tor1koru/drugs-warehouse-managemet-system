@@ -9,9 +9,6 @@ $id_dep = $_SESSION['id_dep'];
 <nav class="nav">
     <h1 class="nav__title">Menu</h1>
     <ul class="nav__menu-list">
-
-        <li class="menu-list__item"><a href="../pages/pers.php" class="menu-list__link">Persons</a></li>
-
         <?php
         // Перевіряємо, чи поточний користувач - "admin", якщо так, тоді показуємо посилання
         if ($_SESSION['login'] == $logged_in_user) {
@@ -31,7 +28,7 @@ $id_dep = $_SESSION['id_dep'];
             <li class="menu-list__item"><a href='../pages/dep_storage.php?id_dep=<?php echo $id_dep; ?>' class="menu-list__link">Storage</a></li>
         <?php }
         ?>
-
+        <li class="menu-list__item"><a href="../pages/pers.php" class="menu-list__link">Persons</a></li>
         <li class="menu-list__item"><a href="../includes/logout.php" class="menu-list__link">Log out</a></li>
     </ul>
 </nav>

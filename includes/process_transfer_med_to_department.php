@@ -15,9 +15,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if ($conn->query($sql) === TRUE) {
         header("Location: ../pages/home.php");
     } else {
-        echo "Помилка: " . $sql . "<br>" . $conn->error;
-    }
 
+//        echo "Помилка: " . $sql . "<br>" . $conn->error;
+        echo "<script>
+                alert('Помилка: " . $conn->error . "');
+                window.location.href = '../pages/transfer_to_department.php';
+              </script>";
+    }
+//        header("Location: ../pages/transfer_to_department.php");
     // Закриття з'єднання з базою даних
     $conn->close();
 }
