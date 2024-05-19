@@ -2,7 +2,7 @@
 $servername = "localhost";
 $username = "root";
 $password = "";
-$database = "CompofMed";
+$database = "СompofMed";
 
 // Підключення до бази даних
 $conn = new mysqli($servername, $username, $password, $database);

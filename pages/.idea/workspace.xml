@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e78dab20-39bb-4246-83af-ed95b125140e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/dep.php" beforeDir="false" afterPath="$PROJECT_DIR$/dep.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/home.php" beforeDir="false" afterPath="$PROJECT_DIR$/home.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pers.php" beforeDir="false" afterPath="$PROJECT_DIR$/pers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/staf_dep.php" beforeDir="false" afterPath="$PROJECT_DIR$/staf_dep.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.name" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,15 +25,15 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;D:/DProgect/drugs-warehouse-managemet-system/pages&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "D:/DProgect/drugs-warehouse-managemet-system",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -54,6 +52,8 @@
       <updated>1716031384700</updated>
       <workItem from="1716031385745" duration="3000" />
       <workItem from="1716048696165" duration="20000" />
+      <workItem from="1716050605161" duration="4000" />
+      <workItem from="1716050655991" duration="13000" />
     </task>
     <servers />
   </component>
