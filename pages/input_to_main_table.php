@@ -1,4 +1,5 @@
 <?php require_once "../includes/header.php" ?>
+
 <title>Input to Main</title>
 <style>
     table {
@@ -49,6 +50,8 @@ $sql = "
         Providers p ON itm.id_med_post = p.id_provider
     WHERE 
         m.name_med LIKE '%".$search."%'
+    ORDER BY
+        itm.id_input_to_main DESC
 ";
 
 $result = $conn->query($sql);
