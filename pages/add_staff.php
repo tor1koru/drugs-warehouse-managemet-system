@@ -23,6 +23,8 @@
 <body>
 <h1>Додати новий персонал</h1>
 
+<h1>Додати новий персонал</h1>
+
 <form method="post" action="../includes/process_add_staff.php">
     <h2>Виберіть відділ та особу</h2>
 
@@ -37,8 +39,11 @@
     <div id="autocomplete-person-list" class="autocomplete-suggestions"></div><br><br>
 
     Посада: <input type="text" name="position"><br><br>
+    Логін: <input type="text" name="login"><br><br>
+    Пароль: <input type="password" name="password"><br><br>
     <input type="submit" value="Додати персонал">
 </form>
+
 
 <script>
     document.getElementById('departmentInput').addEventListener('input', function() {
