@@ -7,6 +7,9 @@ function updateMainStorage($conn) {
     $conn->begin_transaction();
 
     try {
+        if (!$conn->query("TRUNCATE TABLE Main_storage")) {
+            throw new Exception("Помилка очищення таблиці: " . $conn->error);
+        }
         // Вибірка даних з таблиці medicines
         $medicines_sql = "SELECT * FROM medicines";
         $medicines_result = $conn->query($medicines_sql);

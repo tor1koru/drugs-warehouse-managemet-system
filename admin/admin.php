@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Підготовлений вираз для запиту
-    $sql = "SELECT id_dep, password FROM Staff WHERE login = ?";
+    $sql = "SELECT id_dep, password, id_staff FROM Staff WHERE login = ?";
     $stmt = $conn->prepare($sql);
 
     // Перевірка підготовки виразу
@@ -34,12 +34,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Збереження інформації про користувача в сесії
             $_SESSION['login'] = $login;
             $_SESSION['id_dep'] = $row['id_dep'];
+            $_SESSION['id_staff'] = $row['id_staff'];
             if($_SESSION['login'] == "admin"){
                 header('Location: ../pages/home.php');
                 exit();
             }else {
                 // Перенаправлення на іншу сторінку
-                header("Location: ../pages/dep_storage_user.php?id_dep=" . $row['id_dep']);
+                header("Location: ../pages/dep_storage.php?id_dep=" . $row['id_dep']);
                 exit;
             }
         } else {
