@@ -13,7 +13,7 @@
     </style>
 </head>
 <body>
-<h1>Список виробників</h1>
+<h1>Список постачальників</h1>
 
 <?php
 include_once "../database/db_connection.php";
