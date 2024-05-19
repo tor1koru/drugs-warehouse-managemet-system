@@ -1,6 +1,6 @@
 <?php
 include_once "../database/db_connection.php";
-
+global $conn;
 $query = isset($_GET['query']) ? $conn->real_escape_string($_GET['query']) : '';
 
 if ($query) {

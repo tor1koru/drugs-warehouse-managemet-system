@@ -11,6 +11,7 @@
 <?php
 include_once "../database/db_connection.php";
 require_once "../includes/depart_storage.php";
+global $conn;
 // Функція для оновлення даних в таблиці Department_storage
 //function updateDepartmentStorage($conn) {
 //    if (!$conn->query("TRUNCATE TABLE Department_storage")) {

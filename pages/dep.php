@@ -9,6 +9,7 @@
 </form>
 
 <?php
+global $conn;
 include_once "../database/db_connection.php";
 
 // Пошук за назвою
