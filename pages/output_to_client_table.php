@@ -123,7 +123,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table>";
-    echo "<tr><th>ID</th><th>Медикамент</th><th>Форма</th><th>Дозування</th><th>Виробник</th><th>Клієнт</th><th>Адреса</th><th>Телефон</th><th>Відділ</th><th>Персонал</th><th>Посада</th><th>Кількість</th><th>Дата</th></tr>";
+    echo "<tr><th>ID</th><th>Медикамент</th><th>Форма</th><th>Дозування</th><th>Виробник</th><th>Клієнт</th><th>Адреса</th><th>Телефон</th><th>Відділ</th><th>Персонал</th><th>Посада</th><th>Кількість</th><th>Дата</th><th>Дії</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["id_output_client"] . "</td>";
@@ -139,9 +139,10 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["position"] . "</td>";
         echo "<td>" . $row["count_to_person"] . "</td>";
         echo "<td>" . $row["date_output_to_client"] . "</td>";
+        // Додаємо посилання на редагування та видалення з параметром ID запису
+        echo "<td><a href='edit_output_client.php?id=" . $row["id_output_client"] . "'>Редагувати</a> | <a href='delete_output_client.php?id=" . $row["id_output_client"] . "'>Видалити</a></td>";
         echo "</tr>";
     }
-
     echo "</table>";
 } else {
     echo "Немає даних для відображення.";

@@ -58,7 +58,7 @@ $result = $conn->query($sql);
 
 if ($result->num_rows > 0) {
     echo "<table>";
-    echo "<tr><th>ID</th><th>Медикамент</th><th>Форма</th><th>Дозування</th><th>Виробник</th><th>Кількість</th><th>Дата</th><th>Постачальник</th><th>Адреса</th><th>Телефон</th><th>Менеджер</th></tr>";
+    echo "<tr><th>ID</th><th>Медикамент</th><th>Форма</th><th>Дозування</th><th>Виробник</th><th>Кількість</th><th>Дата</th><th>Постачальник</th><th>Адреса</th><th>Телефон</th><th>Менеджер</th><th>Дії</th></tr>";
 
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
@@ -73,6 +73,7 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["address"] . "</td>";
         echo "<td>" . $row["teleph"] . "</td>";
         echo "<td>" . $row["fullName_manager"] . "</td>";
+        echo "<td><a href='edit_input_main.php?id=" . $row["id_input_to_main"] . "'>Редагувати</a> | <a href='delete_input_main.php?id=" . $row["id_input_to_main"] . "'>Видалити</a></td>";
         echo "</tr>";
     }
 
