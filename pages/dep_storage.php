@@ -142,8 +142,20 @@ if ($result->num_rows > 0) {
 $conn->close();
 ?>
 
-    <button onclick="toggleForm()">Видати ліки</button>
-
+    <button onclick="toggleForm('transferForm')">Видати ліки</button>
+    <button onclick="toggleForm('addPersonForm')">Додати нову особу</button>
+    <div id="addPersonForm" style="display: none;">
+        <h2>Додати нову особу</h2>
+        <form method="post" action="../includes/add_person.php">
+            Ім'я: <input type="text" name="name"><br><br>
+            Прізвище: <input type="text" name="surname"><br><br>
+            По батькові: <input type="text" name="patronim"><br><br>
+            Вік: <input type="date" name="age"><br><br>
+            Адреса: <input type="text" name="address"><br><br>
+            Телефон: <input type="text" name="telephone"><br><br>
+            <input type="submit" value="Додати особу">
+        </form>
+    </div>
     <div id="transferForm" style="display: none;">
         <h1>Передача медикаменту клієнту</h1>
         <form method="post" action="process_transfer_med_to_client.php">
@@ -276,5 +288,14 @@ $conn->close();
             }
         });
     </script>
-
+    <script>
+        function toggleForm(formId) {
+            var form = document.getElementById(formId);
+            if (form.style.display === 'none') {
+                form.style.display = 'block';
+            } else {
+                form.style.display = 'none';
+            }
+        }
+    </script>
 <?php require_once "../includes/footer.php" ?>

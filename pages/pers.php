@@ -36,8 +36,14 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["age"] . "</td>";
         echo "<td>" . $row["address"] . "</td>";
         echo "<td>" . $row["telephone"] . "</td>";
-        echo "<td><a href='edit_person.php?id=" . $row["id_person"] . "'>Редагувати</a></td>";
-        echo "<td><a href='delete_person.php?id=" . $row["id_person"] . "' onclick=\"return confirm('Ви впевнені, що хочете видалити цю особу?')\">Видалити</a></td>";
+
+        // Перевірка, чи поточний користувач - адміністратор, перед виведенням посилань на редагування та видалення
+        if ($_SESSION['login'] == "admin") {
+            echo "<td><a href='edit_person.php?id=" . $row["id_person"] . "'>Редагувати</a></td>";
+            echo "<td><a href='delete_person.php?id=" . $row["id_person"] . "' onclick=\"return confirm('Ви впевнені, що хочете видалити цю особу?')\">Видалити</a></td>";
+        } else {
+            echo "<td colspan='2'>Редагування доступні тільки адміністратору</td>";
+        }
 
         echo "</tr>";
     }

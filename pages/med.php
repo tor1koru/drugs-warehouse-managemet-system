@@ -41,8 +41,15 @@ if ($result->num_rows > 0) {
         echo "<td class='row__item table__header'>" . $row["med_form"] . "</td>";
         echo "<td class='row__item table__header'>" . $row["dosage"] . "</td>";
         echo "<td class='row__item table__header'>" . $row["producer"] . "</td>";
-        echo "<td><a href='edit_med.php?id=" . $row["id_med"] . "'>Редагувати</a></td>";
-        echo "<td><a href='../includes/delete_med.php?id=" . $row["id_med"] . "'>Видалити</a></td>";
+
+        // Перевірка, чи поточний користувач - адміністратор, перед виведенням посилань на редагування та видалення
+        if ($_SESSION['login'] == "admin") {
+            echo "<td><a href='edit_med.php?id=" . $row["id_med"] . "'>Редагувати</a></td>";
+            echo "<td><a href='../includes/delete_med.php?id=" . $row["id_med"] . "'>Видалити</a></td>";
+        } else {
+            echo "<td colspan='2'>Редагування доступні тільки адміністратору</td>";
+        }
+
         echo "</tr>";
     }
     echo "</table>";
@@ -55,7 +62,11 @@ $conn->close();
 ?>
 
 <!-- Форма для додавання нового медикаменту -->
-<button onclick="toggleForm()">Додати новий медикамент</button>
+<?php if ($_SESSION['login'] == "admin") { ?>
+    <button onclick="toggleForm()">Додати новий медикамент</button>
+<?php } else { ?>
+
+<?php } ?>
 
 <div id="addMedForm" style="display: none;">
     <h2>Додати новий медикамент</h2>
@@ -81,6 +92,8 @@ $conn->close();
             form.style.display = 'none';
         }
     }
+</script>
+
 </script>
 
 <?php require_once "../includes/footer.php" ?>
