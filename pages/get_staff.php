@@ -8,7 +8,7 @@ if ($query) {
             FROM Staff s
             INNER JOIN Person p ON s.id_person = p.id_person
             INNER JOIN Department d ON s.id_dep = d.id_dep
-            WHERE p.name LIKE '%$query%' OR p.surname LIKE '%$query%' OR p.patronim LIKE '%$query%' OR s.position LIKE '%$query%' OR d.name_dep LIKE '%$query%'";
+            WHERE CONCAT(p.name, ' ', p.surname, ' ', p.patronim, ' ', p.age, ' ', s.position, ' ', d.name_dep) LIKE '%$query%'";
     $result = $conn->query($sql);
 
     $staff = array();

@@ -1,27 +1,33 @@
 <?php require_once "../includes/header.php" ?>
-    <title>Input to Main</title>
-    <style>
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        table, th, td {
-            border: 1px solid black;
-        }
-        th, td {
-            padding: 10px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+<title>Input to Main</title>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    table, th, td {
+        border: 1px solid black;
+    }
+    th, td {
+        padding: 10px;
+        text-align: left;
+    }
+    th {
+        background-color: #f2f2f2;
+    }
+</style>
 <h1>Input to Main</h1>
+
+<form method="GET" action="">
+    <label for="search">Пошук за назвою медикаменту:</label>
+    <input type="text" id="search" name="search">
+    <button type="submit">Пошук</button>
+</form>
 
 <?php
 include_once "../database/db_connection.php";
+$search = isset($_GET['search']) ? $conn->real_escape_string($_GET['search']) : '';
 
-// SQL-запит для вибору даних з таблиці Input_to_main з відповідними даними з таблиць Medicines та Providers
 $sql = "
     SELECT 
         itm.id_input_to_main,
@@ -41,6 +47,8 @@ $sql = "
         Medicines m ON itm.id_med_input = m.id_med
     INNER JOIN 
         Providers p ON itm.id_med_post = p.id_provider
+    WHERE 
+        m.name_med LIKE '%".$search."%'
 ";
 
 $result = $conn->query($sql);
@@ -67,7 +75,7 @@ if ($result->num_rows > 0) {
 
     echo "</table>";
 } else {
-    echo "Немає даних для відображення.";
+    echo "Немає результатів для введеної назви медикаменту.";
 }
 
 // Закриття з'єднання з базою даних
