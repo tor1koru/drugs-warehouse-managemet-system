@@ -1,7 +1,7 @@
 <?php
 include_once "../database/db_connection.php";
 session_start();
-
+$id_dep = $_SESSION['id_dep'];
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Отримання даних з форми
     $id_med_client = $_POST['id_med_client'];
@@ -15,9 +15,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 VALUES ($id_med_client, $id_staff_client, $id_person, $count_to_person, CURRENT_DATE)";
 
         if ($conn->query($sql) === TRUE) {
-            header("Location: ../pages/home.php");
+            header("Location: ../pages/dep_storage.php?id_dep=" . $id_dep);
         } else {
-            echo "Помилка: " . $sql . "<br>" . $conn->error;
+            echo "<script>
+                alert('Помилка: " . $conn->error . "');
+                window.location.href = '../pages/dep_storage.php?id_dep=$id_dep';
+              </script>";
         }
     } else {
         echo "Не всі дані надійшли.";
