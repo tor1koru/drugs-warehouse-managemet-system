@@ -56,7 +56,7 @@ $conn->close();
 <?php require_once "../includes/header.php";  ?>
 <h1>Редагування відділу</h1>
 <form method="post" action="<?php echo $_SERVER['PHP_SELF'] . '?id=' . $id_dep; ?>">
-    Нова назва відділу: <input type="text" name="new_name_dep" value="<?php echo $row['name_dep']; ?>"><br><br>
+    Нова назва відділу: <input type="text" name="new_name_dep" value="<?php echo isset($row['name_dep']) ? htmlspecialchars($row['name_dep']) : ''; ?>" required><br><br>
     <input type="submit" value="Зберегти зміни">
 </form>
 <?php require_once "../includes/footer.php";  ?>

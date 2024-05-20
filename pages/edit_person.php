@@ -1,3 +1,4 @@
+<?php require_once "../includes/header.php"; ?>
 <?php
 // Підключення до бази даних
 include_once "../database/db_connection.php";
@@ -63,14 +64,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </head>
     <body>
     <h1>Редагування особи</h1>
-
     <form method="post" action="">
-        Ім'я: <input type="text" name="name" value="<?php echo $name; ?>"><br><br>
-        Прізвище: <input type="text" name="surname" value="<?php echo $surname; ?>"><br><br>
-        По батькові: <input type="text" name="patronim" value="<?php echo $patronim; ?>"><br><br>
-        Вік: <input type="date" name="age" value="<?php echo $age; ?>"><br><br>
-        Адреса: <input type="text" name="address" value="<?php echo $address; ?>"><br><br>
-        Телефон: <input type="text" name="telephone" value="<?php echo $telephone; ?>"><br><br>
+        Ім'я: <input type="text" name="name" value="<?php echo htmlspecialchars($name); ?>" required><br><br>
+        Прізвище: <input type="text" name="surname" value="<?php echo htmlspecialchars($surname); ?>" required><br><br>
+        По батькові: <input type="text" name="patronim" value="<?php echo htmlspecialchars($patronim); ?>" required><br><br>
+        Вік: <input type="date" name="age" value="<?php echo htmlspecialchars($age); ?>" required max="<?php echo date('Y-m-d'); ?>"><br><br>
+        Адреса: <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>" required><br><br>
+        Телефон: <input type="text" name="telephone" value="<?php echo htmlspecialchars($telephone); ?>" required><br><br>
         <input type="submit" value="Оновити дані">
     </form>
 
@@ -81,3 +81,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 // Закриття з'єднання з базою даних
 $conn->close();
 ?>
+<?php require_once "../includes/footer.php"; ?>

@@ -51,11 +51,11 @@ $conn->close();
 <h1>Редагувати постачальника</h1>
 <a href="providers.php">Назад до списку постачальників</a><br><br>
 
-<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?id=<?php echo $id; ?>">
-    Назва виробника: <input type="text" name="name_provider" value="<?php echo $name_provider; ?>"><br><br>
-    Адреса: <input type="text" name="address" value="<?php echo $address; ?>"><br><br>
-    Телефон: <input type="text" name="teleph" value="<?php echo $teleph; ?>"><br><br>
-    ПІБ менеджера: <input type="text" name="fullName_manager" value="<?php echo $fullName_manager; ?>"><br><br>
+<form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>?id=<?php echo htmlspecialchars($id); ?>">
+    Назва виробника: <input type="text" name="name_provider" value="<?php echo htmlspecialchars($name_provider); ?>"><br><br>
+    Адреса: <input type="text" name="address" value="<?php echo htmlspecialchars($address); ?>"><br><br>
+    Телефон: <input type="text" name="teleph" value="<?php echo htmlspecialchars($teleph); ?>"><br><br>
+    ПІБ менеджера: <input type="text" name="fullName_manager" value="<?php echo htmlspecialchars($fullName_manager); ?>"><br><br>
     <input type="submit" value="Оновити дані">
 </form>
 

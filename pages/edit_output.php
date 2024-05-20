@@ -16,12 +16,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         ?>
         <h2>Редагувати видачу медикаменту</h2>
         <form action="update_output.php" method="POST">
-            <input type="hidden" name="id" value="<?php echo $row['id_output']; ?>">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id_output']); ?>">
             <label for="count">Кількість:</label>
-            <input type="text" id="count" name="count" value="<?php echo $row['count']; ?>"><br><br>
+            <input type="number" id="count" name="count" value="<?php echo htmlspecialchars($row['count']); ?>" required min="0"><br><br>
             <label for="date_output">Дата видачі:</label>
-            <input type="date" id="date_output" name="date_output" value="<?php echo $row['date_output']; ?>"><br><br>
-            <!-- Додайте інші поля, які ви бажаєте редагувати -->
+            <input type="date" id="date_output" name="date_output" value="<?php echo htmlspecialchars($row['date_output']); ?>" required><br><br>
             <input type="submit" value="Зберегти зміни">
         </form>
         <?php

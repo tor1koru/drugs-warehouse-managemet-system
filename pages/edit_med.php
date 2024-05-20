@@ -17,11 +17,11 @@ if (isset($_GET['id'])) {
         $medicine = $result->fetch_assoc();
         ?>
         <form method="post" action="../includes/update_med.php">
-            <input type="hidden" name="id" value="<?php echo $medicine['id_med']; ?>">
-            Назва: <input type="text" name="name_med" value="<?php echo $medicine['name_med']; ?>"><br><br>
-            Форма: <input type="text" name="med_form" value="<?php echo $medicine['med_form']; ?>"><br><br>
-            Дозування: <input type="text" name="dosage" value="<?php echo $medicine['dosage']; ?>"><br><br>
-            Виробник: <input type="text" name="producer" value="<?php echo $medicine['producer']; ?>"><br><br>
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($medicine['id_med']); ?>">
+            Назва: <input type="text" name="name_med" value="<?php echo htmlspecialchars($medicine['name_med']); ?>" required><br><br>
+            Форма: <input type="text" name="med_form" value="<?php echo htmlspecialchars($medicine['med_form']); ?>" required><br><br>
+            Дозування: <input type="text" name="dosage" value="<?php echo htmlspecialchars($medicine['dosage']); ?>" required><br><br>
+            Виробник: <input type="text" name="producer" value="<?php echo htmlspecialchars($medicine['producer']); ?>" required><br><br>
             <input type="submit" value="Зберегти зміни">
         </form>
         <?php

@@ -54,12 +54,12 @@ $conn->close();
     <div id="addPersonForm" style="display: none;">
         <h2>Додати нову особу</h2>
         <form method="post" action="../includes/add_person.php">
-            Ім'я: <input type="text" name="name"><br><br>
-            Прізвище: <input type="text" name="surname"><br><br>
-            По батькові: <input type="text" name="patronim"><br><br>
-            Вік: <input type="date" name="age"><br><br>
-            Адреса: <input type="text" name="address"><br><br>
-            Телефон: <input type="text" name="telephone"><br><br>
+            Ім'я: <input type="text" name="name" required><br><br>
+            Прізвище: <input type="text" name="surname" required><br><br>
+            По батькові: <input type="text" name="patronim" required><br><br>
+            Вік: <input type="date" name="age" required><br><br>
+            Адреса: <input type="text" name="address" required><br><br>
+            Телефон: <input type="text" name="telephone" required><br><br>
             <input type="submit" value="Додати особу">
         </form>
     </div>
@@ -69,21 +69,21 @@ $conn->close();
             <h2>Виберіть медикамент, особу та співробітника</h2>
 
             Медикамент:
-            <input type="text" id="medicineInput" name="medicineInput">
+            <input type="text" id="medicineInput" name="medicineInput" required>
             <input type="hidden" id="id_med_client" name="id_med_client">
             <div id="autocomplete-medicine-list" class="autocomplete-suggestions"></div><br><br>
 
             Особа:
-            <input type="text" id="personInput" name="personInput">
+            <input type="text" id="personInput" name="personInput" required>
             <input type="hidden" id="id_person" name="id_person">
             <div id="autocomplete-person-list" class="autocomplete-suggestions"></div><br><br>
 
-
-            Кількість: <input type="number" name="count_to_person"><br><br>
-            Дата: <input type="date" name="date_output_to_client"><br><br>
+            Кількість: <input type="number" name="count_to_person" required><br><br>
+            Дата: <input type="date" name="date_output_to_client" required><br><br>
             <input type="submit" value="Передати медикамент клієнту">
         </form>
     </div>
+
 
     <script>
         function toggleForm() {

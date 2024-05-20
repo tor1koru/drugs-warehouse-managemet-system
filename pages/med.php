@@ -45,7 +45,6 @@ if ($result->num_rows > 0) {
         // Перевірка, чи поточний користувач - адміністратор, перед виведенням посилань на редагування та видалення
         if ($_SESSION['login'] == "admin") {
             echo "<td><a href='edit_med.php?id=" . $row["id_med"] . "'>Редагувати</a></td>";
-            echo "<td><a href='../includes/delete_med.php?id=" . $row["id_med"] . "'>Видалити</a></td>";
         } else {
             echo "<td colspan='2'>Редагування доступні тільки адміністратору</td>";
         }
@@ -72,13 +71,13 @@ $conn->close();
     <h2>Додати новий медикамент</h2>
     <form method="post" action="../includes/add_med.php">
         <label for="name_med">Назва медикаменту:</label>
-        <input type="text" id="name_med" name="name_med"><br><br>
+        <input type="text" id="name_med" name="name_med" required><br><br>
         <label for="med_form">Форма медикаменту:</label>
-        <input type="text" id="med_form" name="med_form"><br><br>
+        <input type="text" id="med_form" name="med_form" required><br><br>
         <label for="dosage">Дозування:</label>
-        <input type="text" id="dosage" name="dosage"><br><br>
+        <input type="text" id="dosage" name="dosage" required><br><br>
         <label for="producer">Виробник:</label>
-        <input type="text" id="producer" name="producer"><br><br>
+        <input type="text" id="producer" name="producer" required><br><br>
         <input type="submit" value="Додати медикамент">
     </form>
 </div>

@@ -82,7 +82,6 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["name_dep"] . "</td>";
         echo "<td>" . $row["count"] . "</td>";
         echo "<td>" . $row["date_output"] . "</td>";
-        // Додаємо посилання на редагування та видалення з параметром ID запису
         echo "<td><a href='edit_output.php?id=" . $row["id_output"] . "'>Редагувати</a> | <a href='delete_output.php?id=" . $row["id_output"] . "'>Видалити</a></td>";
         echo "</tr>";
     }

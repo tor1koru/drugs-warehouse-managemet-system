@@ -5,19 +5,20 @@
     <h2>Виберіть медикамент та відділення</h2>
 
     Медикамент:
-    <input type="text" id="medicineInput" name="medicineInput">
+    <input type="text" id="medicineInput" name="medicineInput" required>
     <input type="hidden" id="id_med_output" name="id_med_output">
     <div id="autocomplete-medicine-list" class="autocomplete-suggestions"></div><br><br>
 
     Відділення:
-    <input type="text" id="departmentInput" name="departmentInput">
+    <input type="text" id="departmentInput" name="departmentInput" required>
     <input type="hidden" id="id_dep_out" name="id_dep_out">
     <div id="autocomplete-department-list" class="autocomplete-suggestions"></div><br><br>
 
-    Кількість: <input type="number" name="count"><br><br>
-    Дата: <input type="date" name="date_output"><br><br>
+    Кількість: <input type="number" name="count" min="1" required><br><br>
+    Дата: <input type="date" name="date_output" required><br><br>
     <input type="submit" value="Передати медикамент на відділення">
 </form>
+
 
 <script>
     document.getElementById('medicineInput').addEventListener('input', function() {

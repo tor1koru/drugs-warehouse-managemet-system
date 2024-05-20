@@ -16,12 +16,11 @@ if (isset($_GET['id']) && !empty($_GET['id'])) {
         ?>
         <h2>Редагувати видачу медикаменту клієнтам</h2>
         <form action="update_output_client.php" method="POST">
-            <input type="hidden" name="id" value="<?php echo $row['id_output_client']; ?>">
+            <input type="hidden" name="id" value="<?php echo htmlspecialchars($row['id_output_client']); ?>">
             <label for="count_to_person">Кількість:</label>
-            <input type="text" id="count_to_person" name="count_to_person" value="<?php echo $row['count_to_person']; ?>"><br><br>
+            <input type="number" id="count_to_person" name="count_to_person" value="<?php echo htmlspecialchars($row['count_to_person']); ?>" required min="0"><br><br>
             <label for="date_output_to_client">Дата видачі:</label>
-            <input type="date" id="date_output_to_client" name="date_output_to_client" value="<?php echo $row['date_output_to_client']; ?>"><br><br>
-            <!-- Додайте інші поля, які ви бажаєте редагувати -->
+            <input type="date" id="date_output_to_client" name="date_output_to_client" value="<?php echo htmlspecialchars($row['date_output_to_client']); ?>" required><br><br>
             <input type="submit" value="Зберегти зміни">
         </form>
         <?php

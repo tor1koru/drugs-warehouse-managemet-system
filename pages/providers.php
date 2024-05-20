@@ -24,7 +24,7 @@ $result = $conn->query($sql);
 // Виведення даних, якщо є результат
 if ($result->num_rows > 0) {
     echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Назва виробника</th><th>Адреса</th><th>Телефон</th><th>ПІБ менеджера</th><th>Редагувати</th><th>Видалити</th></tr>";
+    echo "<tr><th>ID</th><th>Назва виробника</th><th>Адреса</th><th>Телефон</th><th>ПІБ менеджера</th><th>Редагувати</th></tr>";
     while ($row = $result->fetch_assoc()) {
         echo "<tr>";
         echo "<td>" . $row["id_provider"] . "</td>";
@@ -34,7 +34,6 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["fullName_manager"] . "</td>";
         // Додано стовпці з посиланнями на редагування та видалення
         echo "<td><a href='edit_provider.php?id=" . $row["id_provider"] . "'>Редагувати</a></td>";
-        echo "<td><a href='../includes/delete_provider.php?id=" . $row["id_provider"] . "'>Видалити</a></td>";
         echo "</tr>";
     }
     echo "</table>";
@@ -51,10 +50,10 @@ $conn->close();
 <div id="addProviderForm">
     <h2>Додати нового постачальника</h2>
     <form method="post" action="../includes/add_provider.php">
-        Назва виробника: <input type="text" name="name_provider"><br><br>
-        Адреса: <input type="text" name="address"><br><br>
-        Телефон: <input type="text" name="teleph"><br><br>
-        ПІБ менеджера: <input type="text" name="fullName_manager"><br><br>
+        Назва виробника: <input type="text" name="name_provider" required><br><br>
+        Адреса: <input type="text" name="address" required><br><br>
+        Телефон: <input type="text" name="teleph" required><br><br>
+        ПІБ менеджера: <input type="text" name="fullName_manager" required><br><br>
         <input type="submit" value="Додати постачальника">
     </form>
 </div>

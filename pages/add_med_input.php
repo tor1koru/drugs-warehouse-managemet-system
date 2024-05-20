@@ -5,17 +5,17 @@
     <h2>Виберіть медикамент та постачальника</h2>
 
     Медикамент:
-    <input type="text" id="medicineInput" name="medicineInput">
+    <input type="text" id="medicineInput" name="medicineInput" required>
     <input type="hidden" id="id_med_input" name="id_med_input">
     <div id="autocomplete-medicine-list" class="autocomplete-suggestions"></div><br><br>
 
     Постачальник:
-    <input type="text" id="providerInput" name="providerInput">
+    <input type="text" id="providerInput" name="providerInput" required>
     <input type="hidden" id="id_med_post" name="id_med_post">
     <div id="autocomplete-provider-list" class="autocomplete-suggestions"></div><br><br>
 
-    Кількість: <input type="number" name="count"><br><br>
-    Дата: <input type="date" name="date_input"><br><br>
+    Кількість: <input type="number" name="count" min="1" required><br><br>
+    Дата: <input type="date" name="date_input" required><br><br>
     <input type="submit" value="Додати медикамент">
 </form>
 

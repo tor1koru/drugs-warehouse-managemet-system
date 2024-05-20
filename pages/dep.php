@@ -32,7 +32,7 @@ if ($result->num_rows > 0) {
         echo "<td>" . $row["name_dep"] . "</td>";
         echo "<td><a href='dep_storage.php?id_dep=" . $row["id_dep"] . "'>Склад відділу</a></td>";
         echo "<td><a href='staf_dep.php?id_dep=" . $row["id_dep"] . "'>Персонал відділу</a></td>";
-        echo "<td><a href='edit_dep.php?id=" . $row["id_dep"] . "'>Редагувати</a> | <a href='../includes/delete_dep.php?id=" . $row["id_dep"] . "'>Видалити</a></td>";
+        echo "<td><a href='edit_dep.php?id=" . $row["id_dep"] . "'>Редагувати</a> </td>";
         echo "</tr>";
     }
     echo "</table>";
@@ -53,7 +53,7 @@ $conn->close();
     <h2>Додати новий відділ</h2>
     <form method="post" action="../includes/add_dep.php">
         <label for="name_dep">Назва відділу:</label>
-        <input type="text" id="name_dep" name="name_dep"><br><br>
+        <input type="text" id="name_dep" name="name_dep" required><br><br>
         <input type="submit" value="Додати відділ">
     </form>
 </div>
@@ -63,21 +63,21 @@ $conn->close();
     <h2>Додати новий персонал</h2>
     <form method="post" action="../includes/process_add_staff.php">
         <label for="departmentInput">Відділ:</label>
-        <input type="text" id="departmentInput" name="departmentInput">
+        <input type="text" id="departmentInput" name="departmentInput" required>
         <input type="hidden" id="id_dep" name="id_dep">
         <div id="autocomplete-department-list" class="autocomplete-suggestions"></div><br><br>
 
         <label for="personInput">Особа:</label>
-        <input type="text" id="personInput" name="personInput">
+        <input type="text" id="personInput" name="personInput" required>
         <input type="hidden" id="id_person" name="id_person">
         <div id="autocomplete-person-list" class="autocomplete-suggestions"></div><br><br>
 
         <label for="position">Посада:</label>
-        <input type="text" id="position" name="position"><br><br>
+        <input type="text" id="position" name="position" required><br><br>
         <label for="login">Логін:</label>
-        <input type="text" id="login" name="login"><br><br>
+        <input type="text" id="login" name="login" required><br><br>
         <label for="password">Пароль:</label>
-        <input type="password" id="password" name="password"><br><br>
+        <input type="password" id="password" name="password" required><br><br>
         <input type="submit" value="Додати персонал">
     </form>
 </div>

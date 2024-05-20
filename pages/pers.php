@@ -40,7 +40,6 @@ if ($result->num_rows > 0) {
         // Перевірка, чи поточний користувач - адміністратор, перед виведенням посилань на редагування та видалення
         if ($_SESSION['login'] == "admin") {
             echo "<td><a href='edit_person.php?id=" . $row["id_person"] . "'>Редагувати</a></td>";
-            echo "<td><a href='delete_person.php?id=" . $row["id_person"] . "' onclick=\"return confirm('Ви впевнені, що хочете видалити цю особу?')\">Видалити</a></td>";
         } else {
             echo "<td colspan='2'>Редагування доступні тільки адміністратору</td>";
         }
@@ -63,12 +62,12 @@ $conn->close();
 <div id="addPersonForm" style="display: none;">
     <h2>Додати нову особу</h2>
     <form method="post" action="../includes/add_person.php">
-        Ім'я: <input type="text" name="name"><br><br>
-        Прізвище: <input type="text" name="surname"><br><br>
-        По батькові: <input type="text" name="patronim"><br><br>
-        Вік: <input type="date" name="age"><br><br>
-        Адреса: <input type="text" name="address"><br><br>
-        Телефон: <input type="text" name="telephone"><br><br>
+        Ім'я: <input type="text" name="name" required><br><br>
+        Прізвище: <input type="text" name="surname" required><br><br>
+        По батькові: <input type="text" name="patronim" required><br><br>
+        Вік: <input type="number" name="age" required min="0"><br><br>
+        Адреса: <input type="text" name="address" required><br><br>
+        Телефон: <input type="text" name="telephone" required><br><br>
         <input type="submit" value="Додати особу">
     </form>
 </div>
