@@ -14,6 +14,48 @@
 .nav__title{
     text-align: center;
 }
+.nav__menu-list{
+    flex: 1;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+}
+.menu-list__item{
+    margin-bottom: 5px;
+}
+.menu-list__link{
+    display: block;
+
+    text-decoration: none;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-bottom: 1px solid #fff;
+    border-top: 1px solid #fff;
+    color: #333333;
+    font-size: 1.05em;
+    transition: border-bottom 0.3s, border-top 0.3s;
+
+}
+.menu-list__item:hover .menu-list__link{
+    border-bottom: 1px solid darkgray;
+    border-top: 1px solid darkgray;
+
+}
+.next-to-last{
+    margin-bottom: 100px;
+}
+.last{
+    text-align: center;
+
+    transition: background-color 0.3s, color 0.3s;
+}
+.menu-list__item:hover .last{
+    background-color: #333333;
+    color: #f0f0f0;
+}
+
 /*______________MAIN______________*/
 .main{
     flex: 10;
@@ -22,8 +64,4 @@
     flex-direction: column;
 
 }
-.main__title{
-    text-align: center;
-}
 /*--- Table ---*/
-.ma

@@ -1,22 +1,6 @@
 <?php require_once "../includes/header.php" ?>
 
-<title>Input to Main</title>
-<style>
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    table, th, td {
-        border: 1px solid black;
-    }
-    th, td {
-        padding: 10px;
-        text-align: left;
-    }
-    th {
-        background-color: #f2f2f2;
-    }
-</style>
+
 <h1>Input to Main</h1>
 
 <form method="GET" action="">

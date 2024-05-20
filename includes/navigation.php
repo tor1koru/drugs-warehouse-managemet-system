@@ -18,17 +18,17 @@ $id_dep = $_SESSION['id_dep'];
             <li class="menu-list__item"><a href="../pages/med.php" class="menu-list__link">Medicines</a></li>
             <li class="menu-list__item"><a href="../pages/providers.php" class="menu-list__link">Providers</a></li>
             <li class="menu-list__item"><a href="../pages/add_med_input.php" class="menu-list__link">Input to main storage</a></li>
-            <li class="menu-list__item"><a href="../pages/transfer_to_department.php" class="menu-list__link">Output from main storage to department</a></li>
-            <li class="menu-list__item"><a href="../pages/output_to_client_table.php">Історія видачі ліків на клієнтам </a></li>
-            <li class="menu-list__item"><a href="../pages/input_to_main_table.php">Історія поставки на склад ліків </a></li>
-            <li class="menu-list__item"><a href="../pages/output_from_main_table.php">Історія видачі ліків на склади відділів </a></li>
+            <li class="menu-list__item"><a href="../pages/transfer_to_department.php" class="menu-list__link">Output from main storage</a></li>
+            <li class="menu-list__item"><a href="../pages/input_to_main_table.php" class="menu-list__link">Report on the supply of medicines to the main storage</a></li>
+            <li class="menu-list__item"><a href="../pages/output_from_main_table.php" class="menu-list__link">Report on the distribution of medicines from the main storage to departments </a></li>
+            <li class="menu-list__item"><a href="../pages/output_to_client_table.php" class="menu-list__link">Report on the dispensing of medicines to clients </a></li>
             <?php
         }else{
             ?>
             <li class="menu-list__item"><a href='../pages/dep_storage.php?id_dep=<?php echo $id_dep; ?>' class="menu-list__link">Storage</a></li>
         <?php }
         ?>
-        <li class="menu-list__item"><a href="../pages/pers.php" class="menu-list__link">Persons</a></li>
-        <li class="menu-list__item"><a href="../includes/logout.php" class="menu-list__link">Log out</a></li>
+        <li class="menu-list__item"><a href="../pages/pers.php" class="menu-list__link next-to-last">Persons</a></li>
+        <li class="menu-list__item"><a href="../includes/logout.php" class="menu-list__link last">Log out</a></li>
     </ul>
 </nav>
