@@ -79,7 +79,7 @@ $conn->close();
             <input type="hidden" id="id_person" name="id_person">
             <div id="autocomplete-person-list" class="autocomplete-suggestions"></div><br><br>
 
-            Кількість: <input type="number" name="count_to_person" required><br><br>
+            Кількість: <input type="number" name="count_to_person" required min="1"><br><br>
             Дата: <input type="date" name="date_output_to_client" required><br><br>
             <input type="submit" value="Передати медикамент клієнту">
         </form>

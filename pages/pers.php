@@ -65,7 +65,7 @@ $conn->close();
         Ім'я: <input type="text" name="name" required><br><br>
         Прізвище: <input type="text" name="surname" required><br><br>
         По батькові: <input type="text" name="patronim" required><br><br>
-        Вік: <input type="number" name="age" required min="0"><br><br>
+        Вік: <input type="date" name="age" required><br><br>
         Адреса: <input type="text" name="address" required><br><br>
         Телефон: <input type="text" name="telephone" required><br><br>
         <input type="submit" value="Додати особу">
