@@ -15,30 +15,66 @@
 <body>
 <h1>Список постачальників</h1>
 
+<!-- Додайте поле вводу для пошуку -->
+<form method="get" action="">
+    <label for="searchProvider">Пошук за назвою постачальника:</label>
+    <input type="text" id="searchProvider" name="search" placeholder="Введіть постачальника">
+    <input type="submit" value="Пошук">
+</form>
+
 <?php
 include_once "../database/db_connection.php";
-// SQL запит для вибору всіх даних з таблиці Providers
-$sql = "SELECT * FROM Providers";
-$result = $conn->query($sql);
 
-// Виведення даних, якщо є результат
-if ($result->num_rows > 0) {
-    echo "<table border='1'>";
-    echo "<tr><th>ID</th><th>Назва виробника</th><th>Адреса</th><th>Телефон</th><th>ПІБ менеджера</th><th>Редагувати</th></tr>";
-    while ($row = $result->fetch_assoc()) {
-        echo "<tr>";
-        echo "<td>" . $row["id_provider"] . "</td>";
-        echo "<td>" . $row["name_provider"] . "</td>";
-        echo "<td>" . $row["address"] . "</td>";
-        echo "<td>" . $row["teleph"] . "</td>"; // Виправлено назву поля
-        echo "<td>" . $row["fullName_manager"] . "</td>";
-        // Додано стовпці з посиланнями на редагування та видалення
-        echo "<td><a href='edit_provider.php?id=" . $row["id_provider"] . "'>Редагувати</a></td>";
-        echo "</tr>";
+// Перевірка, чи був здійснений пошук
+if(isset($_GET['search'])) {
+    $search = $_GET['search'];
+    // SQL запит для вибору даних з таблиці Providers за назвою виробника
+    $sql = "SELECT * FROM Providers WHERE name_provider LIKE '%$search%'";
+    $result = $conn->query($sql);
+
+    // Виведення результатів пошуку
+    if ($result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr><th>ID</th><th>Назва виробника</th><th>Адреса</th><th>Телефон</th><th>ПІБ менеджера</th><th>Редагувати</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["id_provider"] . "</td>";
+            echo "<td>" . $row["name_provider"] . "</td>";
+            echo "<td>" . $row["address"] . "</td>";
+            echo "<td>" . $row["teleph"] . "</td>"; // Виправлено назву поля
+            echo "<td>" . $row["fullName_manager"] . "</td>";
+            // Додано стовпці з посиланнями на редагування та видалення
+            echo "<td><a href='edit_provider.php?id=" . $row["id_provider"] . "'>Редагувати</a></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "Немає результатів для вашого запиту";
     }
-    echo "</table>";
 } else {
-    echo "Немає даних";
+    // Виведення всіх записів, якщо пошук не був здійснений
+    $sql = "SELECT * FROM Providers";
+    $result = $conn->query($sql);
+
+    // Виведення всіх даних, якщо є результат
+    if ($result->num_rows > 0) {
+        echo "<table border='1'>";
+        echo "<tr><th>ID</th><th>Назва виробника</th><th>Адреса</th><th>Телефон</th><th>ПІБ менеджера</th><th>Редагувати</th></tr>";
+        while ($row = $result->fetch_assoc()) {
+            echo "<tr>";
+            echo "<td>" . $row["id_provider"] . "</td>";
+            echo "<td>" . $row["name_provider"] . "</td>";
+            echo "<td>" . $row["address"] . "</td>";
+            echo "<td>" . $row["teleph"] . "</td>"; // Виправлено назву поля
+            echo "<td>" . $row["fullName_manager"] . "</td>";
+            // Додано стовпці з посиланнями на редагування та видалення
+            echo "<td><a href='edit_provider.php?id=" . $row["id_provider"] . "'>Редагувати</a></td>";
+            echo "</tr>";
+        }
+        echo "</table>";
+    } else {
+        echo "Немає даних";
+    }
 }
 
 // Закриття з'єднання з базою даних

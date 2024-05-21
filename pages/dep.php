@@ -135,6 +135,26 @@ $conn->close();
         }
     });
 
+    document.getElementById('departmentInput').addEventListener('blur', function() {
+        const currentValue = this.value;
+        const autocompleteList = document.getElementById('autocomplete-department-list');
+        const suggestions = autocompleteList.getElementsByClassName('autocomplete-suggestion');
+        let matched = false;
+
+        for (let i = 0; i < suggestions.length; i++) {
+            if (suggestions[i].textContent === currentValue) {
+                document.getElementById('id_dep').value = suggestions[i].dataset.id;
+                matched = true;
+                break;
+            }
+        }
+
+        if (!matched) {
+            document.getElementById('id_dep').value = '';
+        }
+    });
+
+
     document.getElementById('personInput').addEventListener('input', function() {
         const query = this.value;
 
@@ -166,6 +186,26 @@ $conn->close();
             document.getElementById('autocomplete-person-list').innerHTML = '';
         }
     });
+
+    document.getElementById('personInput').addEventListener('blur', function() {
+        const currentValue = this.value;
+        const autocompleteList = document.getElementById('autocomplete-person-list');
+        const suggestions = autocompleteList.getElementsByClassName('autocomplete-suggestion');
+        let matched = false;
+
+        for (let i = 0; i < suggestions.length; i++) {
+            if (suggestions[i].textContent === currentValue) {
+                document.getElementById('id_person').value = suggestions[i].dataset.id;
+                matched = true;
+                break;
+            }
+        }
+
+        if (!matched) {
+            document.getElementById('id_person').value = '';
+        }
+    });
+
 </script>
 
 <?php require_once "../includes/footer.php" ?>

@@ -52,6 +52,25 @@
         }
     });
 
+    document.getElementById('medicineInput').addEventListener('blur', function() {
+        const currentValue = this.value;
+        const autocompleteList = document.getElementById('autocomplete-medicine-list');
+        const suggestions = autocompleteList.getElementsByClassName('autocomplete-suggestion');
+        let matched = false;
+
+        for (let i = 0; i < suggestions.length; i++) {
+            if (suggestions[i].textContent === currentValue) {
+                document.getElementById('id_med_input').value = suggestions[i].dataset.id;
+                matched = true;
+                break;
+            }
+        }
+
+        if (!matched) {
+            document.getElementById('id_med_input').value = '';
+        }
+    });
+
     document.getElementById('providerInput').addEventListener('input', function() {
         const query = this.value;
 
@@ -83,5 +102,25 @@
             document.getElementById('autocomplete-provider-list').innerHTML = '';
         }
     });
+
+    document.getElementById('providerInput').addEventListener('blur', function() {
+        const currentValue = this.value;
+        const autocompleteList = document.getElementById('autocomplete-provider-list');
+        const suggestions = autocompleteList.getElementsByClassName('autocomplete-suggestion');
+        let matched = false;
+
+        for (let i = 0; i < suggestions.length; i++) {
+            if (suggestions[i].textContent === currentValue) {
+                document.getElementById('id_med_post').value = suggestions[i].dataset.id;
+                matched = true;
+                break;
+            }
+        }
+
+        if (!matched) {
+            document.getElementById('id_med_post').value = '';
+        }
+    });
+
 </script>
 <?php require_once "../includes/footer.php"; ?>
