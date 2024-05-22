@@ -1,25 +1,29 @@
 <?php require_once "../includes/header.php" ?>
 
+<h1>Output to Client</h1>
 
-    <h1>Output to Client</h1>
+<form action="" method="GET">
+    <label for="search_med">Пошук за назвою медикаменту:</label>
+    <input type="text" id="search_med" name="search_med">
 
-    <form action="" method="GET">
-        <label for="search_med">Пошук за назвою медикаменту:</label>
-        <input type="text" id="search_med" name="search_med">
+    <label for="search_dep">Пошук за назвою відділу:</label>
+    <input type="text" id="search_dep" name="search_dep">
 
-        <label for="search_dep">Пошук за назвою відділу:</label>
-        <input type="text" id="search_dep" name="search_dep">
+    <label for="search_staff">Пошук за назвою персоналу:</label>
+    <input type="text" id="search_staff" name="search_staff">
 
-        <input type="submit" value="Пошук">
-    </form>
+    <input type="submit" value="Пошук">
+</form>
 
 <?php
 include_once "../database/db_connection.php";
 
 // Перевіряємо, чи був введений пошуковий запит
-if (isset($_GET['search_med']) && isset($_GET['search_dep'])) {
+if (isset($_GET['search_med']) && isset($_GET['search_dep']) && isset($_GET['search_staff'])) {
     $search_med = $_GET['search_med'];
     $search_dep = $_GET['search_dep'];
+    $search_staff = $_GET['search_staff'];
+
     // SQL-запит для вибору даних з таблиці Output_to_client з відповідними даними з таблиць Medicines, Person, Staff та Department з урахуванням пошуку
     $sql = "
     SELECT 
@@ -58,6 +62,8 @@ if (isset($_GET['search_med']) && isset($_GET['search_dep'])) {
         m.name_med LIKE '%$search_med%'
     AND 
         d.name_dep LIKE '%$search_dep%'
+    AND 
+        (sp.name LIKE '%$search_staff%' OR sp.surname LIKE '%$search_staff%' OR sp.patronim LIKE '%$search_staff%')
 ";
 } else {
     // SQL-запит для вибору всіх даних з таблиці Output_to_client з відповідними даними з таблиць Medicines, Person, Staff та Department
