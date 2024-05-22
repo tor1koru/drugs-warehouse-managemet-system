@@ -44,10 +44,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 exit;
             }
         } else {
-            echo "Invalid password.";
+                echo "<script>
+                alert('Не правильний пароль. Спробуйте ще раз.');
+                window.location.href = '../pages/login.php';
+              </script>";
         }
     } else {
-        echo "No user found with that login.";
+        echo "<script>
+                alert('Користувача з таким логіном не існує. Спробуйте ще раз.');
+                window.location.href = '../pages/login.php';
+              </script>";
     }
 
     // Закриття виразу
